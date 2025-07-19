@@ -1,38 +1,34 @@
 # Compiler and flags
-cc = g++
-CFLAGS = -g -Wall -Wextra
+CXX = g++
+CXXFLAGS = -g -Wall -Wextra -std=c++17
 INCLUDES = -I../include
 
-# Directories (relative to tools/)
+# Directories
 SRC_DIR = ../src
-INC_DIR = ../include
 BUILD_DIR = ../build
 BIN_DIR = ../bin
 
-# Source files
+# Sources and objects
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
-
-# Object files
 OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SRCS))
 
-# Target executable
+# Target binary
 TARGET = $(BIN_DIR)/reservation
 
-# Build rules
+# Default target
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	@mkdir -p $(BIN_DIR)
-	$(cc) $(CFLAGS) $(OBJS) -o $(TARGET)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET)
 
-# Pattern rule to compile .cpp -> .o
+# Compile each .cpp into .o
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(BUILD_DIR)
-	$(cc) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
-# Clean rule
 clean:
-	@echo "Cleaning..."
+	@echo "🧹 Cleaning build and bin directories..."
 	@rm -rf $(BUILD_DIR) $(BIN_DIR)
 
 .PHONY: all clean
