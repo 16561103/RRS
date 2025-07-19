@@ -1,0 +1,31 @@
+stages:
+  - build
+  - test
+
+variables:
+  BUILD_DIR: "$CI_PROJECT_DIR/build"
+  BIN_DIR: "$CI_PROJECT_DIR/bin"
+  TOOLS_DIR: "$CI_PROJECT_DIR/tools"
+  SRC_DIR: "$CI_PROJECT_DIR/src"
+  INCLUDE_DIR: "$CI_PROJECT_DIR/include"
+  TEST_DIR: "$CI_PROJECT_DIR/test"
+
+build_app:
+  stage: build
+  image: gcc:latest
+  before_script:
+    - apt-get update && apt-get install -y make
+  script:
+    - echo "🏗️ Building application..."
+    - make -C tools
+
+run_tests:
+  stage: test
+  image: gcc:latest
+  before_script:
+    - apt-get update && apt-get install -y libgtest-dev cmake make g++
+  script:
+    - echo "🧪 Running test cases..."
+    - chmod +x tools/run_tests.sh
+    - tools/run_tests.sh
+
