@@ -1,28 +1,35 @@
 #!/bin/bash
 
 TOOLS_BRANCH="tools"
-REPO_URL="git@github.com:16561103/RRS.git"
 TOOLS_DIR="tools"
+FILES_TO_FETCH=("tools/clean.sh" "tools/makefile" "tools/run_tests.sh")  # Added run_tests.sh
 
-echo "Setting up tools from branch '$TOOLS_BRANCH'..."
+echo "🔧 Setting up tools from branch '$TOOLS_BRANCH'..."
 
-# Clone only the tools branch into a temp folder
+# Remove old tools directory
 if [ -d "$TOOLS_DIR" ]; then
-    echo "Removing old tools folder..."
+    echo "🧹 Removing old tools directory..."
     rm -rf "$TOOLS_DIR"
 fi
 
-git clone --branch "$TOOLS_BRANCH" --depth 1 "$REPO_URL" "$TOOLS_DIR" > /dev/null 2>&1
+mkdir -p "$TOOLS_DIR"
 
-if [ $? -ne 0 ]; then
-    echo "❌ Failed to fetch tools. Make sure SSH access is set up."
-    return 1
-fi
+# Loop over each file and fetch from tools branch
+for file in "${FILES_TO_FETCH[@]}"; do
+    BASENAME=$(basename "$file")
+    git show "$TOOLS_BRANCH:$file" > "$TOOLS_DIR/$BASENAME" 2>/dev/null
 
-# Export tools path to PATH (for clean.sh)
+    if [ $? -ne 0 ]; then
+        echo "❌ Failed to fetch $file from $TOOLS_BRANCH"
+        return 1
+    else
+        echo "✅ Fetched $BASENAME"
+    fi
+done
+
+# Export to PATH if needed
 TOOLS_PATH="$(pwd)/$TOOLS_DIR"
 export PATH="$TOOLS_PATH:$PATH"
 
 echo "✅ Tools setup complete."
-echo "➡️  You can now run: make -C $TOOLS_DIR"
 
