@@ -10,5 +10,5 @@ echo "Cleaning build artifacts..."
 [ -d "$BUILD_DIR" ] && rm -rf "$BUILD_DIR" && echo "Removed $BUILD_DIR"
 [ -d "$BIN_DIR" ] && rm -rf "$BIN_DIR" && echo "Removed $BIN_DIR"
 
-echo "Cleanup done."
+echo "Cleanup done. thanks"
 

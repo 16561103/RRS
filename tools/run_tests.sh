@@ -20,7 +20,7 @@ g++ -std=c++17 -g -Wall -Wextra \
     -lgtest -lgtest_main -pthread -o "$TEST_BIN"
 
 if [ $? -eq 0 ]; then
-    echo "✅ Build successful. Running tests..."
+    echo "✅ Build successful. Running tests... thanks"
     "$TEST_BIN"
 else
     echo "❌ Build failed"
