@@ -1,0 +1,6 @@
+   TRAIN NUMBER   TRAIN NAME          FROM      TIME        TO       TIME    
+    54001          DOON EXPREES       DEHRADUN  08:00    KOLKATA    12:00   
+    54002          SATABDIEXPRESS     DELHI     18:00    MUMBAI     2:00      
+    54003          JANTA	      PUNJAB    19:00    DELHI      5:00
+    54004          triveniExpress     bareilly  1:00     lucknow    24:00
+    54005          hawrah_mail     kolkata    9:00    delhi    24:00

@@ -1,0 +1,5 @@
+TRAIN_NO,	NAME,	   B_STATION,  B_TIME,  D_STATION,  D_TIME
+54001,          kisan,       punjab,   12:00,    delhi,    03:00
+54003,          satabdi,     delhi,    19:00,    punjab,    2:00
+54004,          kashi,     banaras,    01:00,    delhi,    09:00
+54005,          janta,     delhi,    09:00,    punjab,    06:00,

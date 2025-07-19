@@ -1,0 +1,10 @@
+
+tom          36          male             54004              bareilly               lucknow               27-4-22                 tom84588548
+
+jerry          24          male             54003              punjab               delhi               29-4-22                 jerry69848545
+
+zoro          19          male             54003              punjab               delhi               30-4-22                 zoro5656
+
+deepak          26          male             54005              kolkata               delhi               29-5-22                 deepak987456
+
+tom,13,male,54001,delhi,kanput,12-5-19,tom456123,
