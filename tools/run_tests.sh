@@ -1,22 +1,26 @@
 #!/bin/bash
 
+WORKSPACE=$(pwd)
+
 TEST_NAME="test_userlogin"
-TEST_SRC="../test/${TEST_NAME}.cpp"
-TEST_BIN="../tools/build/test/${TEST_NAME}"
+TEST_SRC="${WORKSPACE}/test/${TEST_NAME}.cpp"
+TEST_BIN="${WORKSPACE}/build/test/${TEST_NAME}"
 
-# Dependencies
-USER_SRC="../src/user.cpp"
-ADMIN_SRC="../src/admin.cpp"
-BOOKING_SRC="../src/booking.cpp"
-TRAIN_SRC="../src/train.cpp"
+# Source files
+USER_SRC="${WORKSPACE}/src/user.cpp"
+ADMIN_SRC="${WORKSPACE}/src/admin.cpp"
+BOOKING_SRC="${WORKSPACE}/src/booking.cpp"
+TRAIN_SRC="${WORKSPACE}/src/train.cpp"
 
-# Create build/test directory
-mkdir -p ../tools/build/test
+# Include
+INCLUDE_DIR="${WORKSPACE}/include"
 
 echo "🛠️  Building test: $TEST_NAME"
 
+mkdir -p "${WORKSPACE}/build/test"
+
 g++ -std=c++17 -g -Wall -Wextra \
-    -I../include \
+    -I"${INCLUDE_DIR}" \
     "$TEST_SRC" "$USER_SRC" "$ADMIN_SRC" "$BOOKING_SRC" "$TRAIN_SRC" \
     -lgtest -lgtest_main -pthread -o "$TEST_BIN"
 
